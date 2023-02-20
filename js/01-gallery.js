@@ -3,7 +3,7 @@ import { galleryItems } from './gallery-items.js';
 
 const gallery = document.querySelector('.gallery');
 
-function createImagesGallery(items) {
+function createGallery(items) {
   return items
     .map(({ preview, original, description }) => {
       return `<div class="gallery__item">
@@ -19,24 +19,26 @@ function createImagesGallery(items) {
     })
     .join('');
 }
-const myGallery = createImagesGallery(galleryItems);
+const myGallery = createGallery(galleryItems);
+
 gallery.insertAdjacentHTML('beforeend', myGallery);
 
-gallery.addEventListener('click', onMyGalleryElClick);
+gallery.addEventListener('click', onGalleryImgClick);
 
-function onMyGalleryElClick(e) {
+function onGalleryImgClick(e) {
   e.preventDefault();
+
   const isCorrectClick = e.target.nodeName === 'IMG';
   if (!isCorrectClick) {
     return;
   }
+
   const instance = basicLightbox.create(`
     <img src="${e.target.dataset.source}" width="1280" height="720">
 `);
+
   onOpenModal(instance);
   onCloseModal(instance);
-
-  console.log(e.target.dataset.source);
 }
 
 function onOpenModal(modal) {
