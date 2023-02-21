@@ -14,20 +14,10 @@ function createGallery(items) {
     .join('');
 }
 
-const galleryCards = createGallery(galleryItems);
-galleryCollection.insertAdjacentHTML('beforeend', galleryCards);
+const markupGallery = createGallery(galleryItems);
+galleryCollection.insertAdjacentHTML('beforeend', markupGallery);
 
-galleryCollection.addEventListener('click', onGalleryCollectionClick);
-
-function onGalleryCollectionClick(e) {
-  e.preventDefault();
-  const isCorrectClick = e.target.nodeName === 'IMG';
-  if (!isCorrectClick) {
-    return;
-  }
-}
-
-const lightbox = new SimpleLightbox('.gallery a', {
-  //   captionsData: 'alt',
-  //   captionDelay: 250,
+const gallery = new SimpleLightbox('.gallery  a', {
+  captionsData: 'alt',
+  captionDelay: 250,
 });

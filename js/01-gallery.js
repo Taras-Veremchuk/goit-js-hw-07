@@ -1,7 +1,7 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
-const gallery = document.querySelector('.gallery');
+const galleryCollection = document.querySelector('.gallery');
 
 function createGallery(items) {
   return items
@@ -19,11 +19,11 @@ function createGallery(items) {
     })
     .join('');
 }
-const myGallery = createGallery(galleryItems);
+const markupGallery = createGallery(galleryItems);
 
-gallery.insertAdjacentHTML('beforeend', myGallery);
+galleryCollection.insertAdjacentHTML('beforeend', markupGallery);
 
-gallery.addEventListener('click', onGalleryImgClick);
+galleryCollection.addEventListener('click', onGalleryImgClick);
 
 function onGalleryImgClick(e) {
   e.preventDefault();
@@ -41,13 +41,13 @@ function onGalleryImgClick(e) {
   onCloseModal(instance);
 }
 
-function onOpenModal(modal) {
-  modal.show();
+function onOpenModal(instance) {
+  instance.show();
 }
-function onCloseModal(modal) {
+function onCloseModal(instance) {
   document.addEventListener('keydown', event => {
     if (event.code === 'Escape') {
-      modal.close();
+      instance.close();
     }
   });
 }
